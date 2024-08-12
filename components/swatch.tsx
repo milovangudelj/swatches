@@ -49,7 +49,7 @@ export function Swatch({
 
   return (
     <div
-      className="group flex-[1_1_33.33%] md:flex-[1_1_22.22%] xl:flex-[1_1_11.11%] flex flex-col gap-2 rounded-lg font-mono p-4 relative"
+      className="group flex-[1_1_33.33%] md:flex-[1_1_22.22%] xl:flex-[1_1_11.11%] min-h-[7.125rem] flex flex-col gap-2 rounded-lg font-mono p-4 relative"
       style={{
         backgroundColor: value,
         color: brightness > 50 ? "black" : "white",
@@ -58,7 +58,7 @@ export function Swatch({
       onMouseLeave={() => setHovered(false)}
     >
       <div className="flex items-center opacity-40 select-none text-[10px]/[1]">
-        <span>{indicator}</span>
+        {indicator}
         <span>{weight}%</span>
       </div>
       <span className="select-none">{value}</span>
