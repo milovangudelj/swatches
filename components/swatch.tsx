@@ -16,6 +16,7 @@ export function Swatch({
 }) {
   const [copied, setCopied] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [hasFocus, setHasFocus] = useState(false);
 
   useEffect(() => {
     if (copied) {
@@ -71,25 +72,18 @@ export function Swatch({
           height: 0,
         }}
         animate={{
-          height: hovered ? "auto" : 0,
+          height: hovered || hasFocus ? "auto" : 0,
         }}
-        className="overflow-hidden"
+        className="overflow-hidden bg-zinc-800"
       >
-        <motion.button
+        <button
           onClick={() => {
             navigator.clipboard.writeText(value);
             setCopied(true);
           }}
-          whileHover={{
-            backgroundColor: "#18181b",
-            color: "rgb(255 255 255 / 1)",
-            cursor: "pointer",
-          }}
-          whileFocus={{
-            backgroundColor: "#18181b",
-            color: "rgb(255 255 255 / .1)",
-          }}
-          className="focus-visible:outline-none w-full bg-zinc-800 text-white/70 overflow-hidden drop-shadow-inv p-2"
+          onFocus={() => setHasFocus(true)}
+          onBlur={() => setHasFocus(false)}
+          className="focus-visible:outline-none transition-colors hover:bg-white/[0.06] hover:text-white hover:cursor-pointer w-full text-white/70 focus-within:bg-white/[0.12] focus-within:text-white overflow-hidden drop-shadow-inv p-2"
         >
           <AnimatedState
             className="flex items-center justify-center w-full"
@@ -97,7 +91,7 @@ export function Swatch({
           >
             {copied ? <Check size={24} /> : <Copy size={24} />}
           </AnimatedState>
-        </motion.button>
+        </button>
       </motion.div>
     </div>
   );
