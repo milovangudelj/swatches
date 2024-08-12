@@ -72,7 +72,7 @@ export function Swatch({
                 opacity: 0,
               }}
               animate={{
-                bottom: -0.85,
+                bottom: -0.85, // Not 0 to prevent background spill due to anti-aliasing
                 opacity: 1,
               }}
               exit={{
