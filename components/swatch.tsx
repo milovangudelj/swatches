@@ -1,7 +1,6 @@
 import { Check, Copy } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { AnimatedState } from "./animated-state";
 
 export function Swatch({
@@ -49,57 +48,57 @@ export function Swatch({
 
   return (
     <div
-      className="group flex-[1_1_33.33%] md:flex-[1_1_22.22%] xl:flex-[1_1_11.11%] min-h-[7.125rem] flex flex-col gap-2 rounded-lg font-mono p-4 relative"
-      style={{
-        backgroundColor: value,
-        color: brightness > 50 ? "black" : "white",
-      }}
+      className="group flex-[1_1_33.33%] md:flex-[1_1_22.22%] xl:flex-[1_1_11.11%] min-h-[7.125rem] flex flex-col overflow-hidden rounded-lg font-mono"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="flex items-center opacity-40 select-none text-[10px]/[1]">
-        {indicator}
-        <span>{weight}%</span>
+      <div
+        className="flex-1 flex flex-col gap-2 p-4"
+        style={{
+          backgroundColor: value,
+          color: brightness > 50 ? "black" : "white",
+        }}
+      >
+        <div className="flex items-center opacity-40 select-none text-[10px]/[1]">
+          {indicator}
+          <span>{weight}%</span>
+        </div>
+        <span className="select-none">{value}</span>
       </div>
-      <span className="select-none">{value}</span>
-      <AnimatePresence initial={false}>
-        {hovered && (
-          <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
-            <motion.button
-              transition={{ type: "spring", duration: 0.3, bounce: 0 }}
-              initial={{
-                bottom: -10,
-                opacity: 0,
-              }}
-              animate={{
-                bottom: -0.85, // Not 0 to prevent background spill due to anti-aliasing
-                opacity: 1,
-              }}
-              exit={{
-                bottom: -10,
-                opacity: 0,
-              }}
-              whileHover={{
-                backgroundColor: "#18181b",
-                color: "rgb(255 255 255 / 1)",
-                cursor: "pointer",
-              }}
-              whileFocus={{
-                backgroundColor: "#18181b",
-                color: "rgb(255 255 255 / .1)",
-              }}
-              className="absolute focus-visible:outline-none left-0 right-0 bg-zinc-800 text-white/70 overflow-hidden rounded-b-lg origin-center drop-shadow-inv p-2"
-            >
-              <AnimatedState
-                className="flex items-center justify-center w-full"
-                state={copied ? "copied" : "copy"}
-              >
-                {copied ? <Check size={24} /> : <Copy size={24} />}
-              </AnimatedState>
-            </motion.button>
-          </CopyToClipboard>
-        )}
-      </AnimatePresence>
+      <motion.div
+        transition={{ type: "spring", duration: 0.3, bounce: 0 }}
+        initial={{
+          height: 0,
+        }}
+        animate={{
+          height: hovered ? "auto" : 0,
+        }}
+        className="overflow-hidden"
+      >
+        <motion.button
+          onClick={() => {
+            navigator.clipboard.writeText(value);
+            setCopied(true);
+          }}
+          whileHover={{
+            backgroundColor: "#18181b",
+            color: "rgb(255 255 255 / 1)",
+            cursor: "pointer",
+          }}
+          whileFocus={{
+            backgroundColor: "#18181b",
+            color: "rgb(255 255 255 / .1)",
+          }}
+          className="focus-visible:outline-none w-full bg-zinc-800 text-white/70 overflow-hidden drop-shadow-inv p-2"
+        >
+          <AnimatedState
+            className="flex items-center justify-center w-full"
+            state={copied ? "copied" : "copy"}
+          >
+            {copied ? <Check size={24} /> : <Copy size={24} />}
+          </AnimatedState>
+        </motion.button>
+      </motion.div>
     </div>
   );
 }
