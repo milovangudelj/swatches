@@ -48,58 +48,58 @@ export function Swatch({
     );
 
   return (
-    <>
-      <div
-        className="group flex-[1_1_33.33%] md:flex-[1_1_22.22%] xl:flex-[1_1_11.11%] flex flex-col gap-2 overflow-hidden rounded-lg font-mono p-6 relative"
-        style={{
-          backgroundColor: value,
-          color: brightness > 50 ? "black" : "white",
-        }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        <div className="flex items-center opacity-40 select-none text-[10px]/[1]">
-          <span>{indicator}</span>
-          <span>{weight}%</span>
-        </div>
-        <span className="select-none">{value}</span>
-        <AnimatePresence initial={false}>
-          {hovered && (
-            <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
-              <motion.button
-                transition={{ type: "spring", duration: 0.3, bounce: 0 }}
-                initial={{
-                  scale: 0.75,
-                  opacity: 0,
-                }}
-                animate={{
-                  scale: 1,
-                  opacity: 1,
-                }}
-                exit={{
-                  scale: 0.75,
-                  opacity: 0,
-                }}
-                whileHover={{
-                  backgroundColor: "#e4e4e7",
-                  cursor: "pointer",
-                }}
-                whileFocus={{
-                  backgroundColor: "#e4e4e7",
-                }}
-                className="absolute focus-visible:outline-none bottom-4 right-4 bg-zinc-50 text-black overflow-hidden origin-center drop-shadow p-2 rounded-full"
-              >
-                <AnimatedState
-                  className="flex items-center justify-center w-full"
-                  state={copied ? "copied" : "copy"}
-                >
-                  {copied ? <Check size={24} /> : <Copy size={24} />}
-                </AnimatedState>
-              </motion.button>
-            </CopyToClipboard>
-          )}
-        </AnimatePresence>
+    <div
+      className="group flex-[1_1_33.33%] md:flex-[1_1_22.22%] xl:flex-[1_1_11.11%] flex flex-col gap-2 rounded-lg font-mono p-4 relative"
+      style={{
+        backgroundColor: value,
+        color: brightness > 50 ? "black" : "white",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className="flex items-center opacity-40 select-none text-[10px]/[1]">
+        <span>{indicator}</span>
+        <span>{weight}%</span>
       </div>
-    </>
+      <span className="select-none">{value}</span>
+      <AnimatePresence initial={false}>
+        {hovered && (
+          <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
+            <motion.button
+              transition={{ type: "spring", duration: 0.3, bounce: 0 }}
+              initial={{
+                bottom: -10,
+                opacity: 0,
+              }}
+              animate={{
+                bottom: -0.85,
+                opacity: 1,
+              }}
+              exit={{
+                bottom: -10,
+                opacity: 0,
+              }}
+              whileHover={{
+                backgroundColor: "#18181b",
+                color: "rgb(255 255 255 / 1)",
+                cursor: "pointer",
+              }}
+              whileFocus={{
+                backgroundColor: "#18181b",
+                color: "rgb(255 255 255 / .1)",
+              }}
+              className="absolute focus-visible:outline-none left-0 right-0 bg-zinc-800 text-white/70 overflow-hidden rounded-b-lg origin-center drop-shadow-inv p-2"
+            >
+              <AnimatedState
+                className="flex items-center justify-center w-full"
+                state={copied ? "copied" : "copy"}
+              >
+                {copied ? <Check size={24} /> : <Copy size={24} />}
+              </AnimatedState>
+            </motion.button>
+          </CopyToClipboard>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

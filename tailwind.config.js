@@ -13,6 +13,9 @@ export default {
         sans: ['"Geist Sans"', ...defaultTheme.fontFamily.sans],
         mono: ['"Geist Mono"', ...defaultTheme.fontFamily.mono],
       },
+      dropShadow: {
+        inv: ["0 -1px 2px rgb(0 0 0 / 0.1)", "0 -1px 1px rgb(0 0 0 / 0.06)"],
+      },
     },
   },
   plugins: [],
