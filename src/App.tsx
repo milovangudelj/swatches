@@ -1,4 +1,4 @@
-// import { BottomToolbar } from "~/components/bottom-toolbar";
+import { BottomToolbar } from "~/components/bottom-toolbar";
 import { Nav } from "~/components/nav";
 import { Swatches } from "~/components/swatches";
 import { useColors } from "~/lib/store";
@@ -12,7 +12,7 @@ function App() {
     >
       <Nav />
       <Swatches all={all} />
-      {/* <BottomToolbar /> */}
+      <BottomToolbar />
     </div>
   );
 }

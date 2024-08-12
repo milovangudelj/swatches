@@ -10,7 +10,7 @@ type State = {
 };
 
 type Actions = {
-  changeColor: (string: number) => void;
+  changeColor: (hueOrHex: number | string) => void;
   reset: () => void;
 };
 
@@ -23,8 +23,19 @@ export const useColors = create<State & Actions>()((set) => ({
   tints: initialState.color.tints(),
   shades: initialState.color.shades(),
   all: initialState.color.all(),
-  changeColor: (hue) => {
-    const color = new Values(`hsl(${hue}deg 100% 50% / 1)`);
+  changeColor: (hueOrHex) => {
+    if (typeof hueOrHex === "string") {
+      const color = new Values(hueOrHex);
+      set({
+        color,
+        tints: color.tints(),
+        shades: color.shades(),
+        all: color.all(),
+      });
+      return;
+    }
+
+    const color = new Values(`hsl(${hueOrHex}deg 100% 50% / 1)`);
     set({
       color,
       tints: color.tints(),
