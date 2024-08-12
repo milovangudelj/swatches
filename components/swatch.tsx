@@ -58,11 +58,11 @@ export function Swatch({
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <div className="flex items-center opacity-40 text-[10px]/[1]">
+        <div className="flex items-center opacity-40 select-none text-[10px]/[1]">
           <span>{indicator}</span>
           <span>{weight}%</span>
         </div>
-        <span>{value}</span>
+        <span className="select-none">{value}</span>
         <AnimatePresence initial={false}>
           {hovered && (
             <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
@@ -84,7 +84,10 @@ export function Swatch({
                   backgroundColor: "#e4e4e7",
                   cursor: "pointer",
                 }}
-                className="absolute bottom-4 right-4 bg-zinc-50 text-black overflow-hidden origin-center drop-shadow p-2 rounded-full"
+                whileFocus={{
+                  backgroundColor: "#e4e4e7",
+                }}
+                className="absolute focus-visible:outline-none bottom-4 right-4 bg-zinc-50 text-black overflow-hidden origin-center drop-shadow p-2 rounded-full"
               >
                 <AnimatedState
                   className="flex items-center justify-center w-full"
