@@ -115,7 +115,7 @@ export function Nav() {
         <div className="flex gap-2 items-center text-sm">
           <button
             onClick={handleCopyToSVG}
-            className="inline-flex focus-visible:outline-none select-none items-center gap-2 py-2 pl-3 pr-4 rounded text-white/70 hover:text-white hover:bg-white/[0.06] focus-visible:bg-white/[0.12] focus-visible:text-white transition-colors"
+            className="inline-flex overflow-hidden focus-visible:outline-none select-none items-center gap-2 py-2 pl-3 pr-4 rounded text-white/70 hover:text-white hover:bg-white/[0.06] focus-visible:bg-white/[0.12] focus-visible:text-white transition-colors"
           >
             <AnimatedState
               className="w-full flex items-center justify-center"
@@ -127,7 +127,7 @@ export function Nav() {
           </button>
           <button
             onClick={handleCopyToPNG}
-            className="inline-flex focus-visible:outline-none select-none items-center gap-2 py-2 pl-3 pr-4 rounded text-white/70 hover:text-white hover:bg-white/[0.06] focus-visible:bg-white/[0.12] focus-visible:text-white transition-colors"
+            className="inline-flex overflow-hidden focus-visible:outline-none select-none items-center gap-2 py-2 pl-3 pr-4 rounded text-white/70 hover:text-white hover:bg-white/[0.06] focus-visible:bg-white/[0.12] focus-visible:text-white transition-colors"
           >
             <AnimatedState
               className="w-full flex items-center justify-center"
