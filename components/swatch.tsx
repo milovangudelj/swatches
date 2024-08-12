@@ -30,25 +30,15 @@ export function Swatch({
   const indicator =
     type === "tint" ? (
       <span
+        className="inline-block w-2.5 h-2.5 rounded-full border mr-1"
         style={{
-          display: "inline-block",
-          width: "0.625rem",
-          height: "0.625rem",
-          borderRadius: "9999px",
-          borderWidth: "1px",
-          marginRight: "0.25rem",
           borderColor: brightness > 50 ? "black" : "white",
         }}
       ></span>
     ) : type === "shade" ? (
       <span
+        className="inline-block w-2.5 h-2.5 rounded-full border mr-1"
         style={{
-          display: "inline-block",
-          width: "0.625rem",
-          height: "0.625rem",
-          borderRadius: "9999px",
-          borderWidth: "1px",
-          marginRight: "0.25rem",
           borderColor: brightness > 50 ? "black" : "white",
           backgroundColor: brightness > 50 ? "black" : "white",
         }}
@@ -60,33 +50,15 @@ export function Swatch({
   return (
     <>
       <div
-        className="group"
+        className="group flex-[1_1_33.33%] md:flex-[1_1_22.22%] xl:flex-[1_1_11.11%] flex flex-col gap-2 overflow-hidden rounded-lg font-mono p-6 relative"
         style={{
-          flex: "1 1 11.11%",
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.5rem",
-          overflow: "hidden",
-          borderRadius: "0.5rem",
-          fontFamily:
-            '"Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-          padding: "1.5rem",
-          position: "relative",
           backgroundColor: value,
           color: brightness > 50 ? "black" : "white",
         }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <div
-          style={{
-            opacity: 0.4,
-            display: "flex",
-            alignItems: "center",
-            fontSize: "10px",
-            lineHeight: "1",
-          }}
-        >
+        <div className="flex items-center opacity-40 text-[10px]/[1]">
           <span>{indicator}</span>
           <span>{weight}%</span>
         </div>
@@ -112,27 +84,10 @@ export function Swatch({
                   backgroundColor: "#e4e4e7",
                   cursor: "pointer",
                 }}
-                style={{
-                  position: "absolute",
-                  overflow: "hidden",
-                  color: "black",
-                  transformOrigin: "center",
-                  bottom: "1rem",
-                  right: "1rem",
-                  borderRadius: "9999px",
-                  backgroundColor: "#fafafa",
-                  padding: "0.5rem",
-                  filter:
-                    "drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06))",
-                }}
+                className="absolute bottom-4 right-4 bg-zinc-50 text-black overflow-hidden origin-center drop-shadow p-2 rounded-full"
               >
                 <AnimatedState
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                  className="flex items-center justify-center w-full"
                   state={copied ? "copied" : "copy"}
                 >
                   {copied ? <Check size={24} /> : <Copy size={24} />}

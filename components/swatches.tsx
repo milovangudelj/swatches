@@ -20,17 +20,18 @@ export function Swatches({
         padding: "1rem",
         fontFamily:
           '"Geist Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+        overflow: "hidden",
       }}
     >
       <div
         style={{
           display: "flex",
+          overflowY: "auto",
           flexWrap: "wrap",
           borderRadius: "0.5rem",
           gap: "0.5rem",
-          overflow: "hidden",
           width: "100%",
-          height: "100%",
+          minHeight: "100%",
         }}
       >
         {all.map((tint, index) =>
