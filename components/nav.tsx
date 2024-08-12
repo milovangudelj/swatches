@@ -99,7 +99,7 @@ export function Nav() {
                 await animate(
                   scope.current,
                   { rotateX: "0deg" },
-                  { duration: 0 }
+                  { type: "spring", duration: 0.5, bounce: 0 }
                 );
               };
 
