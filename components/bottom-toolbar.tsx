@@ -106,7 +106,6 @@ export function BottomToolbar() {
                     type="text"
                     value={inputHEXValue}
                     onChange={(e) => setInputHEXValue(e.target.value)}
-                    onBlur={() => changeColor(inputHEXValue)}
                     pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
                     className="form-input transition-colors focus:ring-0 focus:border-white/20 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.12] border border-white/10 max-w-32 font-mono h-fit text-[16px]/[16px]"
                   />
@@ -133,7 +132,6 @@ export function BottomToolbar() {
                   onChange={(e) =>
                     setInputWeightValue(Number.parseFloat(e.target.value))
                   }
-                  onBlur={() => changeWeight(inputWeightValue)}
                   className="form-input transition-colors focus:ring-0 focus:border-white/10 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.06] border border-white/10 max-w-24 font-mono text-base leading-none"
                 />
               </form>
