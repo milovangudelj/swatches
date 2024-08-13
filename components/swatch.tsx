@@ -83,7 +83,7 @@ export function Swatch({
           }}
           onFocus={() => setHasFocus(true)}
           onBlur={() => setHasFocus(false)}
-          className="focus-visible:outline-none transition-colors hover:bg-white/[0.06] hover:text-white hover:cursor-pointer w-full text-white/70 focus-within:bg-white/[0.12] focus-within:text-white overflow-hidden drop-shadow-inv p-2"
+          className="focus-visible:outline-none transition-colors hover:bg-white/[0.06] hover:text-white hover:cursor-pointer w-full text-white/70 focus-visible:bg-white/[0.12] focus-visible:text-white overflow-hidden drop-shadow-inv p-2"
         >
           <AnimatedState
             className="flex items-center justify-center w-full"
