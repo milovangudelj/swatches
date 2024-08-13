@@ -36,76 +36,107 @@ export function BottomToolbar() {
 
   return (
     <div className="flex-none p-4 pt-0">
-      <div className="flex justify-between items-center bg-zinc-800 text-white drop-shadow-sm rounded-lg p-2">
+      <div className="flex justify-between items-center bg-zinc-800 text-white drop-shadow-sm rounded-lg p-4">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <div
               id="color-picker"
-              className="flex relative items-center gap-2"
+              className="flex items-center gap-4"
               ref={pickerRef}
             >
-              <motion.button
-                className="w-10 h-10 flex items-center justify-center rounded outline-none transition-colors"
-                onClick={() => {
-                  setPickerVisible((current) => !current);
-                }}
-                style={{
-                  backgroundColor: color.hexString(),
-                  outlineColor: "transparent",
-                  color: color.getBrightness() > 50 ? "black" : "white",
-                }}
-                whileFocus={{
-                  outlineColor: color.hexString(),
+              <form
+                className="flex flex-col gap-1 relative"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  changeColor(inputHEXValue);
                 }}
               >
-                <EyedropperSample size={24} />
-              </motion.button>
-              <AnimatePresence>
-                {pickerVisible && (
-                  <motion.div
-                    transition={{ type: "spring", duration: 0.3, bounce: 0 }}
-                    initial={{
-                      scale: 0.8,
-                      opacity: 0,
+                <label htmlFor="hex" className="text-sm text-white/70">
+                  Color
+                </label>
+                <div className="flex items-center gap-2">
+                  <motion.button
+                    className="p-2 border flex items-center justify-center rounded outline-none transition-colors"
+                    onClick={() => {
+                      setPickerVisible((current) => !current);
                     }}
-                    animate={{
-                      scale: 1,
-                      opacity: 1,
+                    style={{
+                      backgroundColor: color.hexString(),
+                      borderColor: color.hexString(),
+                      outlineColor: "transparent",
+                      color: color.getBrightness() > 50 ? "black" : "white",
                     }}
-                    exit={{
-                      scale: 0.8,
-                      opacity: 0,
+                    whileFocus={{
+                      outlineColor: color.hexString(),
                     }}
-                    className="w-fit h-fit absolute origin-bottom-left bottom-full left-0 z-10 mb-4"
                   >
-                    <HexColorPicker
-                      color={color.hexString()}
-                      onChange={changeColor}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <input
-                type="text"
-                value={inputHEXValue}
-                onChange={(e) => setInputHEXValue(e.target.value)}
-                onBlur={() => changeColor(inputHEXValue)}
-                pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-                className="form-input transition-colors focus:ring-0 focus:border-white/20 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.12] border border-white/10 max-w-32 font-mono text-base leading-none"
-              />
-              <input
-                type="number"
-                max={100}
-                min={1}
-                step={0.1}
-                value={inputWeightValue}
-                pattern="^(?:100(?:\.0)?|[1-9]?\d(?:\.\d)?)$"
-                onChange={(e) =>
-                  setInputWeightValue(Number.parseFloat(e.target.value))
-                }
-                onBlur={() => changeWeight(inputWeightValue)}
-                className="form-input transition-colors focus:ring-0 focus:border-white/10 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.06] border border-white/10 max-w-24 font-mono text-base leading-none"
-              />
+                    <EyedropperSample size={21} />
+                  </motion.button>
+                  <AnimatePresence>
+                    {pickerVisible && (
+                      <motion.div
+                        transition={{
+                          type: "spring",
+                          duration: 0.3,
+                          bounce: 0,
+                        }}
+                        initial={{
+                          scale: 0.8,
+                          opacity: 0,
+                        }}
+                        animate={{
+                          scale: 1,
+                          opacity: 1,
+                        }}
+                        exit={{
+                          scale: 0.8,
+                          opacity: 0,
+                        }}
+                        className="w-fit h-fit absolute origin-bottom-left bottom-full left-0 z-10 mb-4"
+                      >
+                        <HexColorPicker
+                          color={color.hexString()}
+                          onChange={changeColor}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  <input
+                    name="hex"
+                    type="text"
+                    value={inputHEXValue}
+                    onChange={(e) => setInputHEXValue(e.target.value)}
+                    onBlur={() => changeColor(inputHEXValue)}
+                    pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                    className="form-input transition-colors focus:ring-0 focus:border-white/20 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.12] border border-white/10 max-w-32 font-mono h-fit text-[16px]/[16px]"
+                  />
+                </div>
+              </form>
+              <form
+                className="flex flex-col gap-1"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  changeWeight(inputWeightValue);
+                }}
+              >
+                <label htmlFor="weight" className="text-sm text-white/70">
+                  Weight
+                </label>
+                <input
+                  name="weight"
+                  type="number"
+                  max={100}
+                  min={1}
+                  step={0.1}
+                  value={inputWeightValue}
+                  pattern="^(?:100(?:\.0)?|[1-9]?\d(?:\.\d)?)$"
+                  onChange={(e) =>
+                    setInputWeightValue(Number.parseFloat(e.target.value))
+                  }
+                  onBlur={() => changeWeight(inputWeightValue)}
+                  className="form-input transition-colors focus:ring-0 focus:border-white/10 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.06] border border-white/10 max-w-24 font-mono text-base leading-none"
+                />
+              </form>
             </div>
           </div>
         </div>
