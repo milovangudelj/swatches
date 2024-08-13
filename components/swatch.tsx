@@ -54,7 +54,7 @@ export function Swatch({
       onMouseLeave={() => setHovered(false)}
     >
       <div
-        className="flex-1 flex flex-col gap-2 p-4"
+        className="flex-1 flex flex-col gap-2 p-4 transition-colors"
         style={{
           backgroundColor: value,
           color: brightness > 50 ? "black" : "white",
