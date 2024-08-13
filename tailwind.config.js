@@ -1,5 +1,6 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import formsPlugin from "@tailwindcss/forms";
+import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -19,5 +20,11 @@ export default {
       },
     },
   },
-  plugins: [formsPlugin],
+  plugins: [
+    formsPlugin,
+    plugin(function ({ addVariant }) {
+      addVariant("mouse", "@media (pointer: fine)");
+      addVariant("touch", "@media (pointer: coarse), (pointer: none)");
+    }),
+  ],
 };

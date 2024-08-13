@@ -56,7 +56,7 @@ export function BottomToolbar() {
                 </label>
                 <div className="flex items-center border overflow-hidden border-white/10 rounded">
                   <motion.button
-                    className="p-2 flex items-center justify-center outline-none transition-colors"
+                    className="h-10 w-10 flex items-center justify-center outline-none transition-colors"
                     onClick={(e) => {
                       if (e.currentTarget === e.target) return;
                       setPickerVisible((current) => !current);
@@ -107,7 +107,7 @@ export function BottomToolbar() {
                     value={inputHEXValue}
                     onChange={(e) => setInputHEXValue(e.target.value)}
                     pattern="^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{4}|[A-Fa-f0-9]{3})$"
-                    className="form-input transition-colors bg-transparent p-2 focus:ring-0 hover:bg-white/[0.06] border-none focus-visible:outline-none focus-visible:bg-white/[0.06] max-w-28 font-mono h-fit text-[16px]/[16px]"
+                    className="form-input transition-colors bg-transparent p-2 focus:ring-0 hover:bg-white/[0.06] border-none focus-visible:outline-none focus-visible:bg-white/[0.06] max-w-28 font-mono h-10 text-base leading-none"
                   />
                 </div>
               </form>
@@ -132,7 +132,7 @@ export function BottomToolbar() {
                   onChange={(e) =>
                     setInputWeightValue(Number.parseFloat(e.target.value))
                   }
-                  className="form-input transition-colors focus:ring-0 focus:border-white/10 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.06] border border-white/10 max-w-24 font-mono text-base leading-none"
+                  className="form-input transition-colors focus:ring-0 focus:border-white/10 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.06] border border-white/10 mouse:max-w-24 max-w-20 h-10 font-mono text-base leading-none"
                 />
               </form>
             </div>
