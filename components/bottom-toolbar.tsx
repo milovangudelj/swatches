@@ -81,7 +81,7 @@ export function BottomToolbar() {
                           bounce: 0,
                         }}
                         initial={{
-                          scale: 0.8,
+                          scale: 0.9,
                           opacity: 0,
                         }}
                         animate={{
@@ -89,7 +89,7 @@ export function BottomToolbar() {
                           opacity: 1,
                         }}
                         exit={{
-                          scale: 0.8,
+                          scale: 0.9,
                           opacity: 0,
                         }}
                         className="w-fit h-fit absolute origin-bottom-left bottom-full left-0 z-10 mb-4"
