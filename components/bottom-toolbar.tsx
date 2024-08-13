@@ -57,7 +57,8 @@ export function BottomToolbar() {
                 <div className="flex items-center gap-2">
                   <motion.button
                     className="p-2 border flex items-center justify-center rounded outline-none transition-colors"
-                    onClick={() => {
+                    onClick={(e) => {
+                      if (e.currentTarget === e.target) return;
                       setPickerVisible((current) => !current);
                     }}
                     style={{
