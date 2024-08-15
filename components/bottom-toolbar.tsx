@@ -160,13 +160,13 @@ export function BottomToolbar() {
                   }
                 >
                   <Select.Trigger
-                    className="flex items-center gap-2 px-2 h-10 border rounded border-white/10 hover:bg-white/[0.06] focus-visible:bg-white/[0.06] transition-colors focus-visible:outline-none"
-                    aria-label="Food"
+                    className="flex items-center gap-2 px-2 group h-10 border rounded border-white/10 hover:bg-white/[0.06] focus-visible:bg-white/[0.06] transition-colors focus-visible:outline-none"
+                    aria-label="Filter"
                   >
                     <Select.Value aria-label={filter}>
                       {filter.charAt(0).toUpperCase() + filter.slice(1)}
                     </Select.Value>
-                    <Select.Icon className="SelectIcon">
+                    <Select.Icon className="text-white/70 group-hover:text-white group-focus-visible:text-white transition-colors">
                       <CaretUpDown size={16} />
                     </Select.Icon>
                   </Select.Trigger>
