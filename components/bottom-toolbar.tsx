@@ -48,7 +48,7 @@ export function BottomToolbar() {
               ref={pickerRef}
             >
               <form
-                className="flex flex-col gap-1 relative"
+                className="flex-1 md:flex-none flex flex-col gap-1 relative"
                 onSubmit={(e) => {
                   e.preventDefault();
                   changeColor(inputHEXValue);
@@ -115,7 +115,7 @@ export function BottomToolbar() {
                 </div>
               </form>
               <form
-                className="flex flex-col gap-1"
+                className="flex-shrink md:flex-shrink-0 flex flex-col gap-1"
                 onSubmit={(e) => {
                   e.preventDefault();
                   changeWeight(inputWeightValue);
@@ -135,11 +135,11 @@ export function BottomToolbar() {
                   onChange={(e) =>
                     setInputWeightValue(Number.parseFloat(e.target.value))
                   }
-                  className="form-input transition-colors focus:ring-0 focus:border-white/10 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.06] border border-white/10 mouse:max-w-24 max-w-20 h-10 font-mono text-base leading-none"
+                  className="form-input w-full transition-colors focus:ring-0 focus:border-white/10 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.06] border border-white/10 mouse:max-w-24 max-w-20 h-10 font-mono text-base leading-none"
                 />
               </form>
               <form
-                className="flex flex-col gap-1"
+                className="flex-1 md:flex-none flex flex-col gap-1"
                 onSubmit={(e) => {
                   e.preventDefault();
                 }}
