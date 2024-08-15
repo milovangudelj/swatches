@@ -54,7 +54,10 @@ export function BottomToolbar() {
                   changeColor(inputHEXValue);
                 }}
               >
-                <label htmlFor="hex" className="text-sm text-white/70">
+                <label
+                  htmlFor="hex"
+                  className="text-sm text-white/70 select-none"
+                >
                   Color
                 </label>
                 <div className="flex items-center border overflow-hidden border-white/10 rounded">
@@ -121,7 +124,10 @@ export function BottomToolbar() {
                   changeWeight(inputWeightValue);
                 }}
               >
-                <label htmlFor="weight" className="text-sm text-white/70">
+                <label
+                  htmlFor="weight"
+                  className="text-sm text-white/70 select-none"
+                >
                   Weight
                 </label>
                 <input
@@ -139,7 +145,7 @@ export function BottomToolbar() {
                 />
               </form>
               <form
-                className="flex-1 md:flex-none flex flex-col gap-1"
+                className="flex-1 md:flex-none flex flex-col gap-1 select-none"
                 onSubmit={(e) => {
                   e.preventDefault();
                 }}
