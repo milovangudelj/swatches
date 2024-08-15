@@ -10,7 +10,7 @@ import { Svg2Png } from "svg2png-converter";
 
 export function Nav() {
   const [scope, animate] = useAnimate();
-  const { all, changeColor } = useColors();
+  const { values, changeColor } = useColors();
   const [copiedSVG, setCopiedSVG] = useState(false);
   const [copiedPNG, setCopiedPNG] = useState(false);
 
@@ -33,7 +33,7 @@ export function Nav() {
   }, [copiedPNG]);
 
   const generateSVG = async () => {
-    return satori(<Swatches all={all} inert={true} />, {
+    return satori(<Swatches values={values} inert={true} />, {
       width: 1920,
       fonts: [
         {

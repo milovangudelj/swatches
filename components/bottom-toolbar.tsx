@@ -1,12 +1,15 @@
 import { EyedropperSample } from "@phosphor-icons/react";
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import { AnimatePresence, motion } from "framer-motion";
+import * as Select from "@radix-ui/react-select";
+import { Check, CaretUp, CaretDown, CaretUpDown } from "@phosphor-icons/react";
 
 import { useColors } from "~/lib/store";
 
 export function BottomToolbar() {
-  const { color, weight, changeColor, changeWeight } = useColors();
+  const { color, weight, filter, changeColor, changeWeight, changeFilter } =
+    useColors();
   const [pickerVisible, setPickerVisible] = useState(false);
   const [inputHEXValue, setInputHEXValue] = useState(color.hexString());
   const [inputWeightValue, setInputWeightValue] = useState(weight);
@@ -135,6 +138,72 @@ export function BottomToolbar() {
                   className="form-input transition-colors focus:ring-0 focus:border-white/10 bg-transparent p-2 rounded hover:bg-white/[0.06] focus-visible:outline-none focus-visible:bg-white/[0.06] border border-white/10 mouse:max-w-24 max-w-20 h-10 font-mono text-base leading-none"
                 />
               </form>
+              <form
+                className="flex flex-col gap-1"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                <label htmlFor="filter" className="text-sm text-white/70">
+                  Filter
+                </label>
+                <Select.Root
+                  value={filter}
+                  onValueChange={(value) =>
+                    changeFilter(value as "all" | "tints" | "shades")
+                  }
+                >
+                  <Select.Trigger
+                    className="flex items-center gap-2 px-2 h-10 border rounded border-white/10 hover:bg-white/[0.06] focus-visible:bg-white/[0.06] transition-colors focus-visible:outline-none"
+                    aria-label="Food"
+                  >
+                    <Select.Value aria-label={filter}>
+                      {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                    </Select.Value>
+                    <Select.Icon className="SelectIcon">
+                      <CaretUpDown size={16} />
+                    </Select.Icon>
+                  </Select.Trigger>
+                  <Select.Portal>
+                    <AnimatePresence>
+                      <Select.Content>
+                        <motion.div
+                          className="bg-zinc-800 rounded overflow-hidden border border-white/10 drop-shadow"
+                          transition={{
+                            type: "spring",
+                            duration: 0.3,
+                            bounce: 0,
+                          }}
+                          initial={{
+                            scale: 0.9,
+                            opacity: 0,
+                          }}
+                          animate={{
+                            scale: 1,
+                            opacity: 1,
+                          }}
+                          exit={{
+                            scale: 0.9,
+                            opacity: 0,
+                          }}
+                        >
+                          <Select.ScrollUpButton className="">
+                            <CaretUp size={16} />
+                          </Select.ScrollUpButton>
+                          <Select.Viewport className="">
+                            <SelectItem value="all">All</SelectItem>
+                            <SelectItem value="tints">Tints</SelectItem>
+                            <SelectItem value="shades">Shades</SelectItem>
+                          </Select.Viewport>
+                          <Select.ScrollDownButton className="">
+                            <CaretDown size={16} />
+                          </Select.ScrollDownButton>
+                        </motion.div>
+                      </Select.Content>
+                    </AnimatePresence>
+                  </Select.Portal>
+                </Select.Root>
+              </form>
             </div>
           </div>
         </div>
@@ -142,3 +211,22 @@ export function BottomToolbar() {
     </div>
   );
 }
+
+const SelectItem = forwardRef<HTMLDivElement, Select.SelectItemProps>(
+  ({ children, ...props }, forwardedRef) => {
+    return (
+      <Select.Item
+        className={
+          "flex items-center gap-2 text-white hover:cursor-pointer p-2 focus-visible:outline-none focus-visible:bg-white/[0.06] transition-colors"
+        }
+        {...props}
+        ref={forwardedRef}
+      >
+        <Select.ItemText>{children}</Select.ItemText>
+        <Select.ItemIndicator>
+          <Check size={16} />
+        </Select.ItemIndicator>
+      </Select.Item>
+    );
+  }
+);

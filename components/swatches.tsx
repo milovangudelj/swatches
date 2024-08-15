@@ -4,10 +4,10 @@ import { Swatch } from "./swatch";
 import { InertSwatch } from "./inert-swatch";
 
 export function Swatches({
-  all,
+  values,
   inert = false,
 }: {
-  all: Values[];
+  values: Values[];
   inert?: boolean;
 }) {
   return (
@@ -34,22 +34,22 @@ export function Swatches({
           minHeight: "100%",
         }}
       >
-        {all.map((tint, index) =>
+        {values.map((value, index) =>
           inert ? (
             <InertSwatch
               key={index}
-              value={tint.hexString()}
-              brightness={tint.getBrightness()}
-              weight={tint.weight}
-              type={tint.type}
+              value={value.hexString()}
+              brightness={value.getBrightness()}
+              weight={value.weight}
+              type={value.type}
             />
           ) : (
             <Swatch
               key={index}
-              value={tint.hexString()}
-              brightness={tint.getBrightness()}
-              weight={tint.weight}
-              type={tint.type}
+              value={value.hexString()}
+              brightness={value.getBrightness()}
+              weight={value.weight}
+              type={value.type}
             />
           )
         )}
