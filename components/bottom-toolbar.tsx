@@ -13,6 +13,7 @@ export function BottomToolbar() {
   const [pickerVisible, setPickerVisible] = useState(false);
   const [inputHEXValue, setInputHEXValue] = useState(color.hexString());
   const [inputWeightValue, setInputWeightValue] = useState(weight);
+  const [selectOpen, setSelectOpen] = useState(false);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -158,6 +159,8 @@ export function BottomToolbar() {
                   onValueChange={(value) =>
                     changeFilter(value as "all" | "tints" | "shades")
                   }
+                  open={selectOpen}
+                  onOpenChange={setSelectOpen}
                 >
                   <Select.Trigger
                     className="flex items-center gap-2 px-2 group h-10 border rounded border-white/10 hover:bg-white/[0.06] focus-visible:bg-white/[0.06] transition-colors focus-visible:outline-none"
@@ -172,40 +175,42 @@ export function BottomToolbar() {
                   </Select.Trigger>
                   <Select.Portal>
                     <AnimatePresence>
-                      <Select.Content>
-                        <motion.div
-                          className="bg-zinc-800 rounded overflow-hidden border border-white/10 drop-shadow"
-                          transition={{
-                            type: "spring",
-                            duration: 0.3,
-                            bounce: 0,
-                          }}
-                          initial={{
-                            scale: 0.9,
-                            opacity: 0,
-                          }}
-                          animate={{
-                            scale: 1,
-                            opacity: 1,
-                          }}
-                          exit={{
-                            scale: 0.9,
-                            opacity: 0,
-                          }}
-                        >
-                          <Select.ScrollUpButton className="">
-                            <CaretUp size={16} />
-                          </Select.ScrollUpButton>
-                          <Select.Viewport className="">
-                            <SelectItem value="all">All</SelectItem>
-                            <SelectItem value="tints">Tints</SelectItem>
-                            <SelectItem value="shades">Shades</SelectItem>
-                          </Select.Viewport>
-                          <Select.ScrollDownButton className="">
-                            <CaretDown size={16} />
-                          </Select.ScrollDownButton>
-                        </motion.div>
-                      </Select.Content>
+                      {selectOpen && (
+                        <Select.Content asChild>
+                          <motion.div
+                            className="bg-zinc-800 rounded overflow-hidden border border-white/10 drop-shadow"
+                            transition={{
+                              type: "spring",
+                              duration: 0.3,
+                              bounce: 0,
+                            }}
+                            initial={{
+                              scale: 0.9,
+                              opacity: 0,
+                            }}
+                            animate={{
+                              scale: 1,
+                              opacity: 1,
+                            }}
+                            exit={{
+                              scale: 0.9,
+                              opacity: 0,
+                            }}
+                          >
+                            <Select.ScrollUpButton className="">
+                              <CaretUp size={16} />
+                            </Select.ScrollUpButton>
+                            <Select.Viewport className="">
+                              <SelectItem value="all">All</SelectItem>
+                              <SelectItem value="tints">Tints</SelectItem>
+                              <SelectItem value="shades">Shades</SelectItem>
+                            </Select.Viewport>
+                            <Select.ScrollDownButton className="">
+                              <CaretDown size={16} />
+                            </Select.ScrollDownButton>
+                          </motion.div>
+                        </Select.Content>
+                      )}
                     </AnimatePresence>
                   </Select.Portal>
                 </Select.Root>
