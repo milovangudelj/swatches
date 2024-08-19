@@ -197,15 +197,15 @@ export function BottomToolbar() {
                               opacity: 0,
                             }}
                           >
-                            <Select.ScrollUpButton className="">
+                            <Select.ScrollUpButton className="flex items-center border-b border-white/10 justify-center text-white/70 hover:bg-white/[0.06]">
                               <CaretUp size={16} />
                             </Select.ScrollUpButton>
-                            <Select.Viewport className="">
+                            <Select.Viewport>
                               <SelectItem value="all">All</SelectItem>
                               <SelectItem value="tints">Tints</SelectItem>
                               <SelectItem value="shades">Shades</SelectItem>
                             </Select.Viewport>
-                            <Select.ScrollDownButton className="">
+                            <Select.ScrollDownButton className="flex items-center border-t border-white/10 justify-center text-white/70 hover:bg-white/[0.06]">
                               <CaretDown size={16} />
                             </Select.ScrollDownButton>
                           </motion.div>
@@ -228,13 +228,13 @@ const SelectItem = forwardRef<HTMLDivElement, Select.SelectItemProps>(
     return (
       <Select.Item
         className={
-          "flex items-center gap-2 text-white hover:cursor-pointer p-2 focus-visible:outline-none focus-visible:bg-white/[0.06] transition-colors"
+          "flex items-center gap-2 p-2 pl-8 text-white relative hover:cursor-pointer focus-visible:outline-none focus-visible:bg-white/[0.06] transition-colors"
         }
         {...props}
         ref={forwardedRef}
       >
         <Select.ItemText>{children}</Select.ItemText>
-        <Select.ItemIndicator>
+        <Select.ItemIndicator className="absolute left-2 inline-flex items-center justify-center">
           <Check size={16} />
         </Select.ItemIndicator>
       </Select.Item>
