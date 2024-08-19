@@ -49,7 +49,9 @@ export function Swatch({
 
   return (
     <div
-      className="group flex-[1_1_33.33%] md:flex-[1_1_22.22%] xl:flex-[1_1_11.11%] min-h-[7.125rem] flex flex-col overflow-hidden rounded-lg font-mono"
+      className={`group ${
+        type === "base" ? "flex-[1_1_100%]" : "flex-[1_1_33.33%]"
+      } md:flex-[1_1_22.22%] xl:flex-[1_1_11.11%] min-h-[7.125rem] flex flex-col overflow-hidden rounded-lg font-mono`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
