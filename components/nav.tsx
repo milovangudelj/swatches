@@ -198,9 +198,9 @@ export function Nav() {
                 <span>Export</span>
               </button>
             </Dialog.Trigger>
-            <Dialog.Portal forceMount>
-              <AnimatePresence>
-                {dialogOpen && (
+            <AnimatePresence>
+              {dialogOpen && (
+                <Dialog.Portal forceMount>
                   <Dialog.Overlay asChild>
                     <motion.div
                       transition={{
@@ -220,8 +220,6 @@ export function Nav() {
                       className="bg-black/70 backdrop-blur-sm fixed inset-0"
                     />
                   </Dialog.Overlay>
-                )}
-                {dialogOpen && (
                   <Dialog.Content asChild>
                     <motion.div
                       transition={{
@@ -323,9 +321,9 @@ export function Nav() {
                       </Dialog.Close>
                     </motion.div>
                   </Dialog.Content>
-                )}
-              </AnimatePresence>
-            </Dialog.Portal>
+                </Dialog.Portal>
+              )}
+            </AnimatePresence>
           </Dialog.Root>
         </div>
       </div>
